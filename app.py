@@ -34,8 +34,8 @@ def register_user():
         db.session.commit()
 
     return {
-        name: user.name,
-        user_id: user.telegram_user_id
+        'name': user.name,
+        'user_id': user.telegram_user_id
     }
 
 if __name__ == '__main__':
