@@ -1,4 +1,4 @@
-import os, logging
+import os, logging, json
 from flask import Flask, abort, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 
@@ -25,6 +25,11 @@ def get_pokemon_info(name_or_id):
 def register_user():
     name = request.form.get('name')
     user_id = request.form.get('user_id')
+    jsondata = request.get_json(force=True)
+
+    if not jsondata is None:
+        name = jsondata['name']
+        user_id = jsondata['user_id']
 
     user = User.query.get(user_id)
 
